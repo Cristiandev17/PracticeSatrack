@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="AppPracticeSatrack.Pages.AddEmployeesPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:AppPracticeSatrack.ViewModels"
+    Title="Nuevo Empleado"
+    mc:Ignorable="d">
+    <ContentPage.BindingContext>
+        <vm:AddEmployeesViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid
+            Padding="20,5,20,0"
+            CompressedLayout.IsHeadless="True"
+            HorizontalOptions="FillAndExpand"
+            RowSpacing="0"
+            VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid
+                Grid.Row="0"
+                HorizontalOptions="FillAndExpand"
+                RowSpacing="5"
+                VerticalOptions="CenterAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <StackLayout
+                    Grid.Row="1"
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Vertical">
+                    <Label HorizontalOptions="StartAndExpand" Text="Nombre" />
+                    <Entry HorizontalOptions="StartAndExpand" Text="{Binding Name}" />
+                </StackLayout>
+                <StackLayout
+                    Grid.Row="2"
+                    HorizontalOptions="StartAndExpand"
+                    Orientation="Vertical">
+                    <Label HorizontalOptions="StartAndExpand" Text="Apellido" />
+                    <Entry HorizontalOptions="StartAndExpand" Text="{Binding LastName}" />
+                </StackLayout>
+                <StackLayout
+                    Grid.Row="3"
+                    HorizontalOptions="StartAndExpand"
+                    Orientation="Vertical">
+                    <Label HorizontalOptions="StartAndExpand" Text="Ocupación" />
+                    <Entry HorizontalOptions="StartAndExpand" Text="{Binding Position}" />
+                </StackLayout>
+                <StackLayout
+                    Grid.Row="4"
+                    HorizontalOptions="StartAndExpand"
+                    Orientation="Vertical">
+                    <Label HorizontalOptions="StartAndExpand" Text="Edad" />
+                    <Entry HorizontalOptions="StartAndExpand" Text="{Binding Age}" />
+                </StackLayout>
+            </Grid>
+            <Button
+                Grid.Row="1"
+                BackgroundColor="{StaticResource colorSecondary}"
+                Command="{Binding SaveEmployeeCommand}"
+                HorizontalOptions="FillAndExpand"
+                Text="Guardar"
+                VerticalOptions="EndAndExpand" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
