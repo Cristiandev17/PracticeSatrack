@@ -1,5 +1,4 @@
-﻿using AppPracticeSatrack.Configuration;
-using AppPracticeSatrack.Pages;
+﻿using AppPracticeSatrack.Pages;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -11,7 +10,7 @@ namespace AppPracticeSatrack
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new EmployeesPage());
+            MainPage = new NavigationPage( new EmployeesPage());
         }
 
         protected override void OnStart()

@@ -7,7 +7,6 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Ninject.Modules;
-using AppPracticeSatrack.Configuration;
 
 namespace AppPracticeSatrack.Droid
 {
@@ -23,16 +22,15 @@ namespace AppPracticeSatrack.Droid
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            ConfigureModules();
 
             //ServiceLocator.Inject(this);
             LoadApplication(new App());
         }
 
-        private void ConfigureModules()
-        {
-            Factory.CreateKernel();
-        }
+        //private void ConfigureModules()
+        //{
+        //    Factory.CreateKernel();
+        //}
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {

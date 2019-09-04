@@ -1,5 +1,4 @@
-﻿using AppPracticeSatrack.Interfaces;
-using AppPracticeSatrack.Models;
+﻿using AppPracticeSatrack.Models;
 using AppPracticeSatrack.Pages;
 using AppPracticeSatrack;
 using System;
@@ -10,30 +9,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
-using AppPracticeSatrack.Configuration;
 using Ninject;
+using AppPracticeSatrack.Repositories;
 
 namespace AppPracticeSatrack.ViewModels
 {
     public class EmployeesViewModel : BaseViewModel
     {
-        IEmployeeRepository EmployeeRepository;
-        IVehicleRepository VehicleRepository;
-
         public EmployeesViewModel()
         {
-            Factory.Inject(this);
             GetEmployees();
         }
 
         public bool HasEmployees => Employees.Count >= 1;
-
-        [Inject]
-        public void ReciveInterface(IEmployeeRepository employeeRepository, IVehicleRepository vehicleRepository)
-        {
-            EmployeeRepository = employeeRepository;
-            VehicleRepository = vehicleRepository;
-        }
 
         private async void GetEmployees()
         {

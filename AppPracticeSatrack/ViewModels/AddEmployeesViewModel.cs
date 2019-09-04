@@ -1,6 +1,5 @@
-﻿using AppPracticeSatrack.Configuration;
-using AppPracticeSatrack.Interfaces;
-using AppPracticeSatrack.Models;
+﻿using AppPracticeSatrack.Models;
+using AppPracticeSatrack.Repositories;
 using Ninject;
 using System;
 using System.Collections.Generic;
@@ -13,19 +12,17 @@ namespace AppPracticeSatrack.ViewModels
 {
     public class AddEmployeesViewModel : BaseViewModel
     {
-
-        IEmployeeRepository EmployeeRepository;
-
         public AddEmployeesViewModel()
         {
-            ServiceLocator.Inject(this);
+            //Factory.Inject(this);
+            //ServiceLocator.Inject(this);
         }
 
-        [Inject]
-        public void ReciveInterface(IEmployeeRepository employeeRepository)
-        {
-            EmployeeRepository = employeeRepository;
-        }
+        //[Inject]
+        //public void ReciveInterface(IEmployeeRepository employeeRepository)
+        //{
+        //    EmployeeRepository = employeeRepository;
+        //}
         private string name;
         public string Name
         {

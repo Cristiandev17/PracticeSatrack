@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -11,7 +11,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Configuration\ServiceLocator.cs" />
+    <Compile Remove="Configuration\**" />
+    <EmbeddedResource Remove="Configuration\**" />
+    <None Remove="Configuration\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,9 +27,6 @@
 
   <ItemGroup>
     <Folder Include="Converters\" />
-    <Folder Include="Providers\Implementations\" />
-    <Folder Include="Services\Implementations\" />
-    <Folder Include="Services\Interfaces\" />
   </ItemGroup>
 
   <ItemGroup>

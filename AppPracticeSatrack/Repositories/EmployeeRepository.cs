@@ -1,5 +1,4 @@
-﻿using AppPracticeSatrack.Interfaces;
-using AppPracticeSatrack.Models;
+﻿using AppPracticeSatrack.Models;
 using AppPracticeSatrack.Models.Response;
 using Newtonsoft.Json;
 using Ninject.Modules;
@@ -14,10 +13,10 @@ using System.Threading.Tasks;
 
 namespace AppPracticeSatrack.Repositories
 {
-    public class EmployeeRepository : IEmployeeRepository
+    public static class EmployeeRepository
     {
-        private RestClient _restClient;
-        public RestClient GetRestInstance()
+        private static RestClient _restClient;
+        public static RestClient GetRestInstance()
         {
             if (_restClient == null)
             {
@@ -26,12 +25,11 @@ namespace AppPracticeSatrack.Repositories
             return _restClient;
         }
 
-        public ObservableCollection<EmployeeModel> GetEmployees()
+        public static ObservableCollection<EmployeeModel> GetEmployees()
         {
             var listDetail = new ObservableCollection<EmployeeModel>();
             var client = GetRestInstance();
             var request = new RestRequest("api/Employees", Method.GET);
-            //request.AddHeader(EnumCandidateParams.Authorization.ToString(), "bearer " + token);
             try
             {
                 var response = client.Execute<List<EmployeeResponse>>(request);
@@ -46,9 +44,9 @@ namespace AppPracticeSatrack.Repositories
             return listDetail;
         }
 
-       
 
-        public string AddEmployee(EmployeeModel employee)
+
+        public static string AddEmployee(EmployeeModel employee)
         {
             var result = string.Empty;
             var client = GetRestInstance();
@@ -56,23 +54,17 @@ namespace AppPracticeSatrack.Repositories
             var json = JsonConvert.SerializeObject(employee);
             request.AddParameter("text/json", json, ParameterType.RequestBody);
             request.RequestFormat = DataFormat.Json;
-            try
+            var response = client.Execute(request);
+            if (response.StatusCode == HttpStatusCode.OK)
             {
-                var response = client.Execute(request);
-                if (response.StatusCode == HttpStatusCode.OK)
-                {
-                    return result = "ok";
-                }
-                else
-                    return result = "bad";
+                return result = "ok";
             }
-            catch (Exception ex)
-            {
-            }
-            return result;
+            else
+                return result = "bad";
+
         }
 
-        public string DeleteEmployee(string Id)
+        public static string DeleteEmployee(string Id)
         {
             var result = string.Empty;
             var client = GetRestInstance();
@@ -95,7 +87,7 @@ namespace AppPracticeSatrack.Repositories
             return result;
         }
 
-        private ObservableCollection<EmployeeModel> MapModel(List<EmployeeResponse> data)
+        private static ObservableCollection<EmployeeModel> MapModel(List<EmployeeResponse> data)
         {
             ObservableCollection<EmployeeModel> listEmployees = new ObservableCollection<EmployeeModel>();
             foreach (var item in data)
